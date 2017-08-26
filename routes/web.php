@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Thujohn\Twitter\TwitterServiceProvider::class ;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +32,7 @@ Route::get('/tweet', function()
             'curl_ssl_verifypeer'        => false,
             'curl_proxy'                 => 'https://127.0.0.1:8580'
         ]);
-        $response = Twitter::getTrendsAvailable();
+        $response = Twitter::getTrendsPlace(['id'=>455819]);
     }
     catch (Exception $e)
     {
@@ -42,3 +42,27 @@ Route::get('/tweet', function()
 
     dd($response);
 });
+Route::get('/search', function()
+{
+    try
+    {
+
+        Twitter::reconfig([
+            //fiddler
+            'curl_ssl_verifyhost'        => 0,
+            'curl_ssl_verifypeer'        => false,
+            'curl_proxy'                 => 'https://127.0.0.1:8580'
+        ]);
+        $response = Twitter::getSearch(['q'=>"#محسن_حججی"]);
+        echo json_encode($response);
+    }
+    catch (Exception $e)
+    {
+        // dd(Twitter::error());
+        dd(Twitter::logs());
+    }
+
+    dd($response);
+});
+
+Route::post('/trensbyhashtag',['as' => 'trensbyhashtag', 'uses' =>'MainController@trendsbyhashtag']);

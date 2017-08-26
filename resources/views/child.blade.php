@@ -26,22 +26,27 @@
                 </ul>
             </li>
         </ul>
+        <?php
+            $hashta="#حججی";
+            ?>
         <div >
-            <form class="navbar-form navbar-left">
+            {!! Form::open(['method'=>'post','route' => ['trensbyhashtag'],'class'=>'navbar-form navbar-left']) !!}
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
+
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
+                        {{ Form::submit('',['class'=>"btn btn-default"]) }}
+
                             <i class="glyphicon glyphicon-search"></i>
-                        </button>
+
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 </nav>
 
-<div >
+<div>
     @yield('sidebar')
 </div>
 
