@@ -27,20 +27,26 @@ class MainController extends Controller{
             ]);
             $hashtag = @$request->hashtag;
 
-            $response = Twitter::getSearch(['q'=>$hashtag]);
+            $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]); //darkhaste asli ine dg
 
             $response = $response->statuses;
-            //  echo json_encode( $response);
-            //echo $response->statuses[1]->text;
 
-            //echo json_encode( $response);
-            return view('test',["key"=>$response]);
+            $full = [];
+            foreach($response as $response=>$val){
+                $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
+                $temp = preg_replace("/RT/", " ", $temp);
+                $temp = explode('http', $temp);
+                //TODO:REMOVE EXTRA CHARACERS FROM $TEMP
+                $full[] = $temp[0];
+            }
+            $full = array_unique($full);
+            return view('test',["key"=>$full]);
             // dd($response);
         }
         catch (Exception $e)
         {
             // dd(Twitter::error());
-          // echo json_encode($response);
+            // echo json_encode($response);
             dd(Twitter::logs());
         }
 
