@@ -1,7 +1,7 @@
 <ul>
 
 @foreach($key as $response=>$val)
-    {{$val}}<br><br>
+             {{$val[3]->full_text}}<br><br>
 @endforeach
 
 </ul>

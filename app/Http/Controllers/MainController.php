@@ -30,18 +30,27 @@ class MainController extends Controller{
             $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]); //darkhaste asli ine dg
 
             $response = $response->statuses;
+            // echo json_encode($response);
+            //dd($response);
 
-            $full = [];
+            $all = [];
             foreach($response as $response=>$val){
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
-                $temp = preg_replace("/RT/", " ", $temp);
+                $temp = preg_replace("/RT /", " ", $temp);
+                $temp = preg_replace("/(@.*? )/", " ", $temp);
                 $temp = explode('http', $temp);
                 //TODO:REMOVE EXTRA CHARACERS FROM $TEMP
-                $full[] = $temp[0];
+                $full = ['full_text'=> $temp[0],
+                    'user-name'=>$val->user->screen_name,
+                    'img_url'=>$val->user->profile_image_url
+                ];
+                $all[] = $full;
             }
-            $full = array_unique($full);
-            return view('test',["key"=>$full]);
-            // dd($response);
+            //echo json_encode($all);
+            // $full = array_unique($full);
+            return view('test',["key"=>$response]);
+            dd($all);
+            //dd($response);
         }
         catch (Exception $e)
         {
