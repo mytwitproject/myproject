@@ -33,7 +33,7 @@ class MainController extends Controller{
             // echo json_encode($response);
             //dd($response);
 
-            $all = [];
+            $all =[];
             foreach($response as $response=>$val){
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
                 $temp = preg_replace("/RT /", " ", $temp);
@@ -41,14 +41,15 @@ class MainController extends Controller{
                 $temp = explode('http', $temp);
                 //TODO:REMOVE EXTRA CHARACERS FROM $TEMP
                 $full = ['full_text'=> $temp[0],
-                    'user-name'=>$val->user->screen_name,
+                    'user_name'=>$val->user->screen_name,
                     'img_url'=>$val->user->profile_image_url
                 ];
                 $all[] = $full;
             }
+
             //echo json_encode($all);
             // $full = array_unique($full);
-            return view('test',["key"=>$response]);
+           // return view('test',["key"=>$all]);
             dd($all);
             //dd($response);
         }
