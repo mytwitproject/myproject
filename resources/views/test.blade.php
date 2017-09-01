@@ -1,7 +1,12 @@
+@extends('child');
 <ul>
-
+<br><br><br><br><br>
 @foreach($key as $response=>$val)
-             {{$val->full_text}}<br><br>
+             {{$img=$val['full_text']}}
+
+    <img src="<?php echo($val['img_url']); ?>">
+        <br><br>
+
 @endforeach
 
 </ul>

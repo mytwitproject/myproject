@@ -27,11 +27,8 @@ class MainController extends Controller{
             ]);
             $hashtag = @$request->hashtag;
 
-            $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]); //darkhaste asli ine dg
-
+            $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
             $response = $response->statuses;
-            // echo json_encode($response);
-            //dd($response);
 
             $all =[];
             foreach($response as $response=>$val){
@@ -44,14 +41,30 @@ class MainController extends Controller{
                     'user_name'=>$val->user->screen_name,
                     'img_url'=>$val->user->profile_image_url
                 ];
+                $screen_nam = $val->user->screen_name;
                 $all[] = $full;
             }
 
-            //echo json_encode($all);
-            // $full = array_unique($full);
-           // return view('test',["key"=>$all]);
-            dd($all);
-            //dd($response);
+            $respon = Twitter::getGeoSearch(['query'=>"Iran"]);
+            $long = $respon->result->places[0]->centroid[0];
+            $lat = $respon->result->places[0]->centroid[1];
+            $r = $respon->result->places[0]->bounding_box->coordinates;
+
+            //----------------------------------------getting all county name and woeid
+            $respon = Twitter::getTrendsAvailable();
+            dd($respon);
+
+            //-----------------------------------------
+            $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
+
+
+            //echo json_encode($respo);
+            //$full = array_unique($full);
+            //return view('test',["key"=>$all]);
+
+
+
+
         }
         catch (Exception $e)
         {

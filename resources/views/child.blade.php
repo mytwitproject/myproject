@@ -10,9 +10,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body style="height:1500px">
+<body style="height:1500px;">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="row" style="height: 4%">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="overflow: auto;">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
@@ -45,17 +46,7 @@
         </div>
     </div>
 </nav>
-
-<div>
-    @yield('sidebar')
 </div>
-
-
-
-
-
-
-
 
 <script>
     function openLeftMenu() {

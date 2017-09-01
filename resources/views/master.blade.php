@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html >
-<head>
-    <meta charset="UTF-8">
-    <title>Accordion Menu</title>
 
+@section('sidebar')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! Html::style('css/sidebar.css') !!}
     {!! Html::script('js/sidebar.js') !!}
-</head>
 
-<body>
-<div class="col-md-3">
-    <aside class="sidebar" >
+
+    <aside class="sidebar col-md-2" style="padding: 0">
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li>
@@ -121,7 +115,7 @@
             </ul>
         </div>
     </aside>
-</div>
+
 
 <script>
     $("#leftside-navigation .sub-menu > a").click(function(e) {
@@ -129,5 +123,4 @@
                 e.stopPropagation()
     })
 </script>
-</body>
-</html>
+
