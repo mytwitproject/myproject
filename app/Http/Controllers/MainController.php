@@ -18,13 +18,6 @@ class MainController extends Controller{
     public function trendsbyhashtag(Request $request){
         try
         {
-
-            Twitter::reconfig([
-                //fiddler
-                'curl_ssl_verifyhost'        => 0,
-                'curl_ssl_verifypeer'        => false,
-                'curl_proxy'                 => 'https://127.0.0.1:8580'
-            ]);
             $hashtag = @$request->hashtag;
 
             $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
