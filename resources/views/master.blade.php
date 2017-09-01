@@ -1,3 +1,4 @@
+@extends('content')
 <html>
 <head>
     <style>

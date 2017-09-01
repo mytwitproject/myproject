@@ -21,6 +21,9 @@ Route::get('/child', function () {
 Route::get('/master',function (){
     return view('master');
 });
+Route::get('/content',function (){
+    return view('content');
+});
 Route::get('/tweet', function()
 {
     try
@@ -55,5 +58,7 @@ Route::get('/search', function()
 
     dd($response);
 });
+
+
 
 Route::post('/trensbyhashtag',['as' => 'trensbyhashtag', 'uses' =>'MainController@trendsbyhashtag']);

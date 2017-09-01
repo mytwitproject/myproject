@@ -1,4 +1,5 @@
 @extends('master')
+
         <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +13,8 @@
 </head>
 <body style="height:1500px;">
 
-<div class="row" style="height: 4%">
-<nav class="navbar navbar-inverse navbar-fixed-top" style="overflow: auto;">
+<div class="row" style="">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
@@ -47,6 +48,32 @@
     </div>
 </nav>
 </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
     function openLeftMenu() {
