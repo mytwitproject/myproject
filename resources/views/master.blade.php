@@ -1,126 +1,242 @@
+<html>
+<head>
+    <style>
+        .nav-side-menu {
+            overflow: auto;
+            font-family: verdana;
+            font-size: 12px;
+            font-weight: 200;
+            background-color: #2e353d;
+            position: fixed;
+            top: 0px;
+            width: 300px;
+            height: 100%;
+            color: #e1ffff;
+        }
+        .nav-side-menu .brand {
+            background-color: #23282e;
+            line-height: 50px;
+            display: block;
+            text-align: center;
+            font-size: 14px;
+        }
+        .nav-side-menu .toggle-btn {
+            display: none;
+        }
+        .nav-side-menu ul,
+        .nav-side-menu li {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            line-height: 35px;
+            cursor: pointer;
+            /*
+              .collapsed{
+                 .arrow:before{
+                           font-family: FontAwesome;
+                           content: "\f053";
+                           display: inline-block;
+                           padding-left:10px;
+                           padding-right: 10px;
+                           vertical-align: middle;
+                           float:right;
+                      }
+               }
+          */
+        }
+        .nav-side-menu ul :not(collapsed) .arrow:before,
+        .nav-side-menu li :not(collapsed) .arrow:before {
+            font-family: FontAwesome;
+            content: "\f078";
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
+            vertical-align: middle;
+            float: right;
+        }
+        .nav-side-menu ul .active,
+        .nav-side-menu li .active {
+            border-left: 3px solid #d19b3d;
+            background-color: #4f5b69;
+        }
+        .nav-side-menu ul .sub-menu li.active,
+        .nav-side-menu li .sub-menu li.active {
+            color: #d19b3d;
+        }
+        .nav-side-menu ul .sub-menu li.active a,
+        .nav-side-menu li .sub-menu li.active a {
+            color: #d19b3d;
+        }
+        .nav-side-menu ul .sub-menu li,
+        .nav-side-menu li .sub-menu li {
+            background-color: #181c20;
+            border: none;
+            line-height: 28px;
+            border-bottom: 1px solid #23282e;
+            margin-left: 0px;
+        }
+        .nav-side-menu ul .sub-menu li:hover,
+        .nav-side-menu li .sub-menu li:hover {
+            background-color: #020203;
+        }
+        .nav-side-menu ul .sub-menu li:before,
+        .nav-side-menu li .sub-menu li:before {
+            font-family: FontAwesome;
+            content: "\f105";
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
+            vertical-align: middle;
+        }
+        .nav-side-menu li {
+            padding-left: 0px;
+            border-left: 3px solid #2e353d;
+            border-bottom: 1px solid #23282e;
+        }
+        .nav-side-menu li a {
+            text-decoration: none;
+            color: #e1ffff;
+        }
+        .nav-side-menu li a i {
+            padding-left: 10px;
+            width: 20px;
+            padding-right: 20px;
+        }
+        .nav-side-menu li:hover {
+            border-left: 3px solid #d19b3d;
+            background-color: #4f5b69;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            -ms-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+        @media (max-width: 767px) {
+            .nav-side-menu {
+                position: relative;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .nav-side-menu .toggle-btn {
+                display: block;
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                z-index: 10 !important;
+                padding: 3px;
+                background-color: #ffffff;
+                color: #000;
+                width: 40px;
+                text-align: center;
+            }
+            .brand {
+                text-align: left !important;
+                font-size: 22px;
+                padding-left: 20px;
+                line-height: 50px !important;
+            }
+        }
+        @media (min-width: 767px) {
+            .nav-side-menu .menu-list .menu-content {
+                display: block;
+            }
+        }
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
 
-@section('sidebar')
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {!! Html::style('css/sidebar.css') !!}
-    {!! Html::script('js/sidebar.js') !!}
 
+    </style>
 
-    <aside class="sidebar col-md-2" style="padding: 0">
-        <div id="leftside-navigation" class="nano">
-            <ul class="nano-content">
-                <li>
-                    <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
 
-                        <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
-                        </li>
-                        <li><a href="ui-panels.html">Panels</a>
-                        </li>
-                        <li><a href="ui-buttons.html">Buttons</a>
-                        </li>
-                        <li><a href="ui-slider-progress.html">Sliders &amp; Progress</a>
-                        </li>
-                        <li><a href="ui-modals-popups.html">Modals &amp; Popups</a>
-                        </li>
-                        <li><a href="ui-icons.html">Icons</a>
-                        </li>
-                        <li><a href="ui-grid.html">Grid</a>
-                        </li>
-                        <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a>
-                        </li>
-                        <li><a href="ui-nestable-list.html">Nestable Lists</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-table"></i><span>Tables</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li><a href="tables-basic.html">Basic Tables</a>
-                        </li>
+<div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-                        <li><a href="tables-data.html">Data Tables</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Forms</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li><a href="forms-components.html">Components</a>
-                        </li>
-                        <li><a href="forms-validation.html">Validation</a>
-                        </li>
-                        <li><a href="forms-mask.html">Mask</a>
-                        </li>
-                        <li><a href="forms-wizard.html">Wizard</a>
-                        </li>
-                        <li><a href="forms-multiple-file.html">Multiple File Upload</a>
-                        </li>
-                        <li><a href="forms-wysiwyg.html">WYSIWYG Editor</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu active">
-                    <a href="javascript:void(0);"><i class="fa fa-envelope"></i><span>Mail</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li class="active"><a href="mail-inbox.html">Inbox</a>
-                        </li>
-                        <li><a href="mail-compose.html">Compose Mail</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><span>Charts</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li><a href="charts-chartjs.html">Chartjs</a>
-                        </li>
-                        <li><a href="charts-morris.html">Morris</a>
-                        </li>
-                        <li><a href="charts-c3.html">C3 Charts</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><span>Maps</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li><a href="map-google.html">Google Map</a>
-                        </li>
-                        <li><a href="map-vector.html">Vector Map</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="typography.html"><i class="fa fa-text-height"></i><span>Typography</span></a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-file"></i><span>Pages</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-                        <li><a href="pages-blank.html">Blank Page</a>
-                        </li>
-                        <li><a href="pages-login.html">Login</a>
-                        </li>
-                        <li><a href="pages-sign-up.html">Sign Up</a>
-                        </li>
-                        <li><a href="pages-calendar.html">Calendar</a>
-                        </li>
-                        <li><a href="pages-timeline.html">Timeline</a>
-                        </li>
-                        <li><a href="pages-404.html">404</a>
-                        </li>
-                        <li><a href="pages-500.html">500</a>
-                        </li>
-                    </ul>
-                </li>
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                </a>
+            </li>
+
+            <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+                <li class="active"><a href="#">CSS3 Animation</a></li>
+                <li><a href="#">General</a></li>
+                <li><a href="#">Buttons</a></li>
+                <li><a href="#">Tabs & Accordions</a></li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">FontAwesome</a></li>
+                <li><a href="#">Slider</a></li>
+                <li><a href="#">Panels</a></li>
+                <li><a href="#">Widgets</a></li>
+                <li><a href="#">Bootstrap Model</a></li>
             </ul>
-        </div>
-    </aside>
 
 
-<script>
-    $("#leftside-navigation .sub-menu > a").click(function(e) {
-        $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-                e.stopPropagation()
-    })
-</script>
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>New Service 1</li>
+                <li>New Service 2</li>
+                <li>New Service 3</li>
+            </ul>
 
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <li>New New 1</li>
+                <li>New New 2</li>
+                <li>New New 3</li>
+            </ul>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-users fa-lg"></i> Users
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
