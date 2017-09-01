@@ -24,14 +24,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
 
-        if(env('APP_ENV')=="local"){
-            Twitter::reconfig([
-                //fiddler
-                'curl_ssl_verifyhost'        => 0,
-                'curl_ssl_verifypeer'        => false,
-                'curl_proxy'                 => 'https://127.0.0.1:8580'
-            ]);
-        }
+//        if(env('APP_ENV')=="local"){
+//            Twitter::reconfig([
+//                //fiddler
+//                'curl_ssl_verifyhost'        => 0,
+//                'curl_ssl_verifypeer'        => false,
+//                'curl_proxy'                 => 'https://127.0.0.1:8580'
+//            ]);
+//        }
     }
 
 }
