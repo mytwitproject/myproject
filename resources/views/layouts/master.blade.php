@@ -10,6 +10,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="http://code.onion.com/fartscroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.1.21/tilt.jquery.min.js"></script>
     <style>
         .nav-side-menu {
             overflow: auto;
@@ -186,7 +187,7 @@
             <?php
             $hashta="#حججی";
             ?>
-            <div >
+            <div class="pull-right">
                 {!! Form::open(['method'=>'post','route' => ['trensbyhashtag'],'class'=>'navbar-form navbar-left']) !!}
                 <div class="input-group">
                     {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
@@ -273,20 +274,15 @@
             </div>
         </div>
     </div>
-</div>
+
 {{--//------------------------------------------end of sidebar--}}
 
 
         {{--Main content--}}
-<div class="col-sm-9 col-sm-offset-3" style="padding-top: 5%">
-
+<div class="col-sm-9" style="padding-top: 5%">
     @yield("cont")
-
 </div>
-
-
 </div>
-
 
 
 

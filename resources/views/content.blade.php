@@ -154,11 +154,10 @@
 <body>
 @section("cont")
     <div class="row">
-
         @for($i=0;$i<30;$i++)
-            <div class="col-sm-12 col-md-6" style="vertical-align: top;display: inline-block">
-                <div class="card-holder js-tilt" style="vertical-align:top;display: inline-block">
-                    <div class="card" style="vertical-align: top;display: inline-block">
+            <div class="col-sm-12 col-md-6" style="vertical-align: top;float: right">
+                <div class="card-holder js-tilt" >
+                    <div class="card">
                         <div class="card-title">
                             <img class="img-circle card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
                             <div class="username">@Folani</div>
