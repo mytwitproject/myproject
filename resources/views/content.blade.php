@@ -328,7 +328,7 @@
 
 </body>
 
-<script>$(document.ready(function () {fartscroll();})</script>
+<script>$(document).ready(function () {fartscroll();})</script>
 @endsection
 
 
