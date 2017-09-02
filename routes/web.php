@@ -31,9 +31,6 @@ Route::get('/tweet', function()
 {
     try
     {
-
-
-
         $response = Twitter::getTrendsPlace(['id'=>455819]);
     }
     catch (Exception $e)

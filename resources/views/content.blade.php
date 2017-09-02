@@ -254,15 +254,83 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card card-inverse card-info">
+                <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                <div class="card-block">
+                    <figure class="profile profile-inline">
+                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                    </figure>
+                    <h4 class="card-title">Tawshif Ahsan Khan</h4>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card card-inverse card-info">
+                <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                <div class="card-block">
+                    <figure class="profile profile-inline">
+                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                    </figure>
+                    <h4 class="card-title">Tawshif Ahsan Khan</h4>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card card-inverse card-info">
+                <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                <div class="card-block">
+                    <figure class="profile profile-inline">
+                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                    </figure>
+                    <h4 class="card-title">Tawshif Ahsan Khan</h4>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm">Follow</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card card-inverse card-info">
+                <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                <div class="card-block">
+                    <figure class="profile profile-inline">
+                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                    </figure>
+                    <h4 class="card-title">Tawshif Ahsan Khan</h4>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info btn-sm">Follow</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 
 </body>
 
-
+<script>$(document).ready(function () {fartscroll();})</script>
 @endsection
-</html>
+
 
 
 
