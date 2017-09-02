@@ -19,7 +19,7 @@ Route::get('/child', function () {
     return view('child');
 });
 Route::get('/master',function (){
-    return view('master');
+    return view('layouts.master');
 });
 Route::get('/content',function (){
     return view('content');

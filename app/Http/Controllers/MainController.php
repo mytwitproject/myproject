@@ -23,6 +23,7 @@ class MainController extends Controller{
             $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
             $response = $response->statuses;
 
+            dd($response);
             $all =[];
             foreach($response as $response=>$val){
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;

@@ -1,7 +1,8 @@
+@extends("layouts.master")
 <html>
 <head>
-
 <style>
+    @section("content_css")
     html {
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
         font-size: 14px;
@@ -116,6 +117,7 @@
     .meta a:hover {
         color: rgba(0, 0, 0, .87);
     }
+    @endsection
 </style>
 
 </head>
@@ -123,7 +125,8 @@
 
 
 <body>
-<div class="container col-md-9" style="float: right;padding-top: 10%" >
+@section("cont")
+<div class="col-md-9">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
             <div class="card">
@@ -258,9 +261,8 @@
 </body>
 
 
-
-
-
-
-
+@endsection
 </html>
+
+
+
