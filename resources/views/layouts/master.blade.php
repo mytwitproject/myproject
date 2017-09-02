@@ -174,6 +174,13 @@
                         <li><a href="#">Page 3-3</a></li>
                     </ul>
                 </li>
+                <li><select>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+
+                    </select></li>
             </ul>
             <?php
             $hashta="#حججی";

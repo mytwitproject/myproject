@@ -24,7 +24,7 @@ class MainController extends Controller{
             $response = $response->statuses;
             //dd($response);
             $respon = Twitter::getTweet("903981827118964736",["include_entities"=>"true","tweet_mode" => "extended"]);
-           dd($respon);
+
 
             $all =[];
             foreach($response as $response=>$val){
@@ -43,7 +43,7 @@ class MainController extends Controller{
                 $screen_nam = $val->user->screen_name;
                 $all[] = $full;
             }
-            dd($all);
+
             $respon = Twitter::getGeoSearch(['query'=>"Iran"]);
             $long = $respon->result->places[0]->centroid[0];
             $lat = $respon->result->places[0]->centroid[1];
@@ -52,7 +52,7 @@ class MainController extends Controller{
             //----------------------------------------getting all county name and woeid
             $respon = Twitter::getTrendsAvailable();
 
-
+            dd($respon);
             //-----------------------------------------
             $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
 
