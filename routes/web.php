@@ -24,6 +24,9 @@ Route::get('/master',function (){
 Route::get('/content',function (){
     return view('content');
 });
+Route::get('country',function (){
+   return view('Country');
+});
 Route::get('/tweet', function()
 {
     try

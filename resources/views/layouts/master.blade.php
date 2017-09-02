@@ -166,9 +166,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" style="">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
+                <li class="active"><a href="{{ url('master') }}">Home</a></li>
+                <li><a href="{{ url('country') }}">Country</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 3 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Page 3-1</a></li>
@@ -176,6 +175,13 @@
                         <li><a href="#">Page 3-3</a></li>
                     </ul>
                 </li>
+                <li><select>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+                        <option value='1'>1</option>
+
+                    </select></li>
             </ul>
             <?php
             $hashta="#حججی";
