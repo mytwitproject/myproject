@@ -54,16 +54,16 @@
         .card-img-top {
             /*float: left;*/
             display: inline-block;
-            width: 25%;
+            width: 15%;
             margin:20px;
             height: auto;
         }
         .card-title .username{
-            text-align: center;
+
             display: inline-block;
             width: calc( 65% - 40px );
-            margin-left: 3%;
-            font-size: 40px;
+
+            font-size: 30px;
             /*float: left;*/
         }
 
@@ -154,27 +154,27 @@
 <body>
 @section("cont")
     <div class="row">
-        @for($i=0;$i<30;$i++)
+        @foreach($key as $response=>$val)
             <div class="col-sm-12 col-md-6" style="vertical-align: top;float: right">
                 <div class="card-holder js-tilt" >
                     <div class="card">
                         <div class="card-title">
-                            <img class="img-circle card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
-                            <div class="username">@Folani</div>
+                            <img class="img-circle card-img-top" src="<?php echo($val['img_url']); ?>">
+                            <div class="username">{{'@'}}{{$val['user_name']}}</div>
                         </div>
                         <div class="card-block">
-                            @if(rand(1,10)>6)
-                                <img class="card-image-post" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                            @if($val['tweet_img']!="null")
+                                <img class="card-image-post" src="<?php echo($val['tweet_img']); ?>">
                             @endif
                             <h4 class="card-title">Tawshif Ahsan Khan</h4>
                             <div class="card-text">
-                                Tawshif is a web designer living in Bangladesh.
+                                {{$val['full_text']}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
 
 
