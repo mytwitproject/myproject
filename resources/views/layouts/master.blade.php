@@ -272,7 +272,7 @@
 
 
         {{--Main content--}}
-<div class="col-sm-9" style="padding-top: 5%">
+<div class="col-sm-9" style="padding-top: 5%;">
     @yield("cont")
 </div>
 </div>

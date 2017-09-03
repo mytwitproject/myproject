@@ -18,15 +18,11 @@ class MainController extends Controller{
     public function trendsbyhashtag(Request $request){
         try
         {
-            $hashtag = @$request->hashtag;
-
+            $hashtag = $request->hashtag;
             $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
             $response = $response->statuses;
-            //dd($response);
-            $respon = Twitter::getTweet("903981827118964736",["include_entities"=>"true","tweet_mode" => "extended"]);
-
-
             $all =[];
+
             foreach($response as $response=>$val){
                 $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
@@ -40,17 +36,37 @@ class MainController extends Controller{
                     'tweet_img'=>$tweet_image,
                     'created_at'=>$val->created_at
                 ];
-                $screen_nam = $val->user->screen_name;
                 $all[] = $full;
             }
 
             $respon = Twitter::getGeoSearch(['query'=>"Iran"]);
+
             $long = $respon->result->places[0]->centroid[0];
             $lat = $respon->result->places[0]->centroid[1];
-            $r = $respon->result->places[0]->bounding_box->coordinates;
+            $corner_long = $respon->result->places[0]->bounding_box->coordinates['0']['0']['0'];
+            $corner_lat = $respon->result->places[0]->bounding_box->coordinates['0']['0']['1'];
+            $earthRadius = 3959;
+            //-----------------------------------------------getting the distance between center and corner in mile
 
+            $latFrom = deg2rad($lat);
+            $lonFrom = deg2rad($long);
+            $latTo = deg2rad($corner_lat);
+            $lonTo = deg2rad($corner_long);
+
+            $latDelta = $latTo - $latFrom;
+            $lonDelta = $lonTo - $lonFrom;
+
+            $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+                    cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+            $distance = $angle * $earthRadius;
+            dd($distance);
             //-----------------------------------------------getting all county name and woeid
+
             $respon = Twitter::getTrendsAvailable();
+            foreach($respon as $respon=>$val) {
+                $country[] = [$val->parentid => $val->country];
+            }
+            $country = array_map("unserialize", array_unique(array_map("serialize", $country)));
 
 
             //------------------------------------------------
@@ -62,10 +78,6 @@ class MainController extends Controller{
             //$full = array_unique($full);
             return view('content',["key"=>$all]);
 
-
-
-
-
         }
         catch (Exception $e)
         {
@@ -75,29 +87,19 @@ class MainController extends Controller{
         }
 
     }
+
     public function Most_recent(){//----------------------------------------------------------getting 10 top trend
-        $respon = Twitter::getTrendsAvailable();
+        $respons = Twitter::getTrendsPlace(['id'=>1]);
+        $respons = $respons['0']->trends;
+        $all_query = [];
 
-        foreach($respon as $respon=>$val) {
-            $country[] = [$val->parentid => $val->country];
+        for ($i = 0; $i <= 9; $i++) {
+            if(isset($respons[$i])){
+                $result = $respons[$i]->query;
+                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
+                $all_query[] = $result->statuses;
+            }
+
         }
-
-        $country = array_map("unserialize", array_unique(array_map("serialize", $country)));
-        dd($country);
-
-                $respons = Twitter::getTrendsPlace(['id'=>1]);
-                $respons = $respons['0']->trends;
-
-                $all_query = [];
-                for ($i = 0; $i <= 9; $i++) {
-                        if(isset($respons[$i])){
-                                $result = $respons[$i]->query;
-                                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
-                                $all_query[] = $result->statuses;
-                        }
-         }
-
-
-     }
-
+    }
 }
