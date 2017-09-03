@@ -49,11 +49,12 @@ class MainController extends Controller{
             $lat = $respon->result->places[0]->centroid[1];
             $r = $respon->result->places[0]->bounding_box->coordinates;
 
-            //----------------------------------------getting all county name and woeid
+            //-----------------------------------------------getting all county name and woeid
             $respon = Twitter::getTrendsAvailable();
 
 
-            //-----------------------------------------
+            //------------------------------------------------
+
             $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
 
 
@@ -74,18 +75,27 @@ class MainController extends Controller{
         }
 
     }
-    public function Most_recent(){
+    public function Most_recent(){//----------------------------------------------------------getting 10 top trend
+        $respon = Twitter::getTrendsAvailable();
+
+        foreach($respon as $respon=>$val) {
+            $country[] = [$val->parentid => $val->country];
+        }
+
+        $country = array_map("unserialize", array_unique(array_map("serialize", $country)));
+        dd($country);
+
                 $respons = Twitter::getTrendsPlace(['id'=>1]);
                 $respons = $respons['0']->trends;
+
                 $all_query = [];
-                for ($i = 1; $i <= 10; $i++) {
+                for ($i = 0; $i <= 9; $i++) {
                         if(isset($respons[$i])){
                                 $result = $respons[$i]->query;
-                                $all_query[] = $result;
-                            }
+                                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
+                                $all_query[] = $result->statuses;
+                        }
          }
-         echo dd($all_query);
-
 
 
      }
