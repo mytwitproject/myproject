@@ -54,16 +54,14 @@
         .card-img-top {
             /*float: left;*/
             display: inline-block;
-            width: 25%;
+            width: 15%;
             margin:20px;
             height: auto;
         }
         .card-title .username{
-            text-align: center;
             display: inline-block;
             width: calc( 65% - 40px );
-            margin-left: 3%;
-            font-size: 40px;
+            font-size: 30px;
             /*float: left;*/
         }
 

@@ -74,5 +74,20 @@ class MainController extends Controller{
         }
 
     }
+    public function Most_recent(){
+                $respons = Twitter::getTrendsPlace(['id'=>1]);
+                $respons = $respons['0']->trends;
+                $all_query = [];
+                for ($i = 1; $i <= 10; $i++) {
+                        if(isset($respons[$i])){
+                                $result = $respons[$i]->query;
+                                $all_query[] = $result;
+                            }
+         }
+         echo dd($all_query);
+
+
+
+     }
 
 }
