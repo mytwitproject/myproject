@@ -26,6 +26,8 @@
             width:100%;
             transform: translateZ(20px);
             margin-bottom: 10px;
+            vertical-align: top;
+            float: left;
         }
 
         .card-holder{
@@ -34,6 +36,7 @@
             transform-style: preserve-3d;
             margin: 15px 0;
             vertical-align: top;
+            float: left;
         }
 
         .card-block {
@@ -124,7 +127,6 @@
         .profile-inline ~ .card-title {
             display: inline-block;
             margin-left: 4px;
-            vertical-align: top;
         }
 
         .text-bold {
@@ -155,7 +157,7 @@
 @section("cont")
     <div class="row">
         @for($i=0;$i<30;$i++)
-            <div class="col-sm-12 col-md-6" style="vertical-align: top;float: right">
+            <div class="col-sm-6 col-md-4" style="vertical-align: top;float: left">
                 <div class="card-holder js-tilt" >
                     <div class="card">
                         <div class="card-title">
@@ -163,6 +165,7 @@
                             <div class="username">@Folani</div>
                         </div>
                         <div class="card-block">
+
                             @if(rand(1,10)>6)
                                 <img class="card-image-post" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
                             @endif
@@ -176,17 +179,15 @@
             </div>
         @endfor
     </div>
-
-
 </body>
 
 <script>$(document).ready(function () {
         fartscroll();
-        const tilt = $('.js-tilt').tilt({
-            glare: true,
-            maxGlare: .5,
-            scale: 1.0005
-        });
+//        const tilt = $('.js-tilt').tilt({
+//            glare: true,
+//            maxGlare: .5,
+//            scale: 1.0005
+//        });
     })</script>
 @endsection
 

@@ -52,14 +52,14 @@ class MainController extends Controller{
             //----------------------------------------getting all county name and woeid
             $respon = Twitter::getTrendsAvailable();
 
-            dd($respon);
+            //dd($respon);
             //-----------------------------------------
             $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
 
 
             //echo json_encode($respo);
             //$full = array_unique($full);
-            //return view('test',["key"=>$all]);
+            return view('test',["key"=>$all]);
 
 
 
