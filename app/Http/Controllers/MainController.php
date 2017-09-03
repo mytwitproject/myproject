@@ -64,7 +64,7 @@ class MainController extends Controller{
 
 
 
-            
+
         }
         catch (Exception $e)
         {
@@ -72,22 +72,6 @@ class MainController extends Controller{
             // echo json_encode($response);
             dd(Twitter::logs());
         }
-
-    }
-
-    public function Most_recent(){
-        $respons = Twitter::getTrendsPlace(['id'=>1]);
-        $respons = $respons['0']->trends;
-        $all_query = [];
-        for ($i = 1; $i <= 10; $i++) {
-            if(isset($respons[$i])){
-                $result = $respons[$i]->query;
-                $all_query[] = $result;
-            }
-        }
-        echo dd($all_query);
-
-
 
     }
 
