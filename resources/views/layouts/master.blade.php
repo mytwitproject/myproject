@@ -173,7 +173,7 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 3 <span class="caret"></span></a>
                     <select>
                         @foreach($key as $response)
-                            <option value="<?php echo($response) ?>">{{$response}}</option>
+                            <option value="{{ ($response) }}">{{$response}}</option>
                         @endforeach
                     </select>
                 </li>
