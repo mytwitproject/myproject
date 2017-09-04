@@ -39,7 +39,7 @@ class MainController extends Controller{
                 $all[] = $full;
             }
 
-            $respon = Twitter::getGeoSearch(['query'=>"Iran"]);
+            $respon = Twitter::getGeoSearch(['query'=>"Turkey"]);
 
             $long = $respon->result->places[0]->centroid[0];
             $lat = $respon->result->places[0]->centroid[1];
@@ -59,17 +59,8 @@ class MainController extends Controller{
             $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
                     cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
             $distance = $angle * $earthRadius;
-            dd($distance);
-            //-----------------------------------------------getting all county name and woeid
-
-            $respon = Twitter::getTrendsAvailable();
-            foreach($respon as $respon=>$val) {
-                $country[] = [$val->parentid => $val->country];
-            }
-            $country = array_map("unserialize", array_unique(array_map("serialize", $country)));
 
 
-            //------------------------------------------------
 
             $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
 
@@ -101,5 +92,16 @@ class MainController extends Controller{
             }
 
         }
+    }
+
+    public function get_country(){ //-----------------------------------------------getting all county name and woeid
+
+        $respon = Twitter::getTrendsAvailable();
+        foreach($respon as $respon=>$val) {
+            $country[] = $val->country;
+        }
+        $country = array_unique($country);
+        return view('layouts.master',["key"=>$country]);
+
     }
 }

@@ -163,6 +163,7 @@
 </head>
 <body style="height:1500px;">
 
+
 <div class="row" style="">
     <nav class="navbar navbar-inverse navbar-fixed-top" style="">
         <div class="container-fluid">
@@ -170,11 +171,11 @@
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 3 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Page 3-1</a></li>
-                        <li><a href="#">Page 3-2</a></li>
-                        <li><a href="#">Page 3-3</a></li>
-                    </ul>
+                    <select>
+                        @foreach($key as $response)
+                            <option value="volvo">{{$response}}</option>
+                        @endforeach
+                    </select>
                 </li>
             </ul>
             <?php

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap3.css">
 </head>
 <body>
+<?php dd($key) ?>
 <select id="select-country">
     <option value='1'>iran</option>
     <option value='2'>india</option>

@@ -19,15 +19,13 @@ Route::get('/home','MainController@Most_recent');
 Route::get('/child', function () {
     return view('child');
 });
-Route::get('/master',function (){
-    return view('layouts.master');
-});
+
+Route::get('/master','MainController@get_country');
+
 Route::get('/content',function (){
     return view('content');
 });
-Route::get('country',function (){
-   return view('Country');
-});
+Route::get('country','MainController@get_country');
 Route::get('/tweet', function()
 {
     try
