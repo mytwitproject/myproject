@@ -105,4 +105,15 @@ class MainController extends Controller{
         return view('layouts.master',["key"=>$country]);
 
     }
+    public function geo(){ //-----------------------------------------------getting all county name and woeid
+        $respon = Twitter::getTrendsAvailable();
+        dd($respon);
+        foreach($respon as $respon=>$val) {
+            $country[] = $val->country;
+        }
+        $country = array_unique($country);
+        $country['0'] = "Worldwide";
+        return view('layouts.master',["key"=>$country]);
+
+    }
 }

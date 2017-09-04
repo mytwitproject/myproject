@@ -21,6 +21,7 @@ Route::get('/child', function () {
 });
 
 Route::get('/master','MainController@get_country');
+Route::get('/geo','MainController@geo');
 
 Route::get('/content',function (){
     return view('content');
