@@ -101,6 +101,7 @@ class MainController extends Controller{
             $country[] = $val->country;
         }
         $country = array_unique($country);
+        $country['0'] = "Worldwide";
         return view('layouts.master',["key"=>$country]);
 
     }
