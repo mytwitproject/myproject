@@ -43,22 +43,22 @@ img.fnone{float:none !important}
 .ddcommon .noBorderTop{border-top:none 0  !important; padding:0; margin:0;}
 
 /*************** default theme **********************/
-.dd{border:1px solid #c3c3c3;}
-.dd .divider{border-left:1px solid #c3c3c3; border-right:1px solid #fff;; right:24px;}
+.dd{border:1px solid #222;}
+.dd .divider{border-left:1px solid #222; border-right:1px solid #fff;; right:24px;}
 .dd .arrow{width:16px;height:16px; margin-top:-8px; background:url(../images/msdropdown/skin1/dd_arrow.gif) no-repeat;}
 .dd .arrow:hover{background-position:0 100%;}
-.dd .ddTitle{color:#000;background:#e2e2e4 url(../images/msdropdown/skin1/title-bg.gif) repeat-x left top;}
+.dd .ddTitle{color:#999;background:#222 url(../images/msdropdown/skin1/title-bg.gif) repeat-x left top;}
 .dd .ddTitle .ddTitleText{padding:5px 20px 5px 5px;}
 .dd .ddTitle .ddTitleText .ddTitleText{padding:0;}
-.dd .ddTitle .description{font-size:12px; color:#666}
+.dd .ddTitle .description{font-size:12px; color:#999}
 .dd .ddTitle .ddTitleText img{padding-right:5px;}
-.dd .ddChild{border:1px solid #c3c3c3; background-color:#fff; left:-1px;}
-.dd .ddChild li{padding:5px; background-color:#fff; border-bottom:1px solid #c3c3c3;}
-.dd .ddChild li .description{color:#666;}
-.dd .ddChild li .ddlabel{color:#333;}
-.dd .ddChild li.hover{background-color:#f2f2f2}
+.dd .ddChild{border:1px solid #444; background-color:#222; left:-1px;}
+.dd .ddChild li{padding:5px; background-color:#444; border-bottom:1px solid #222;}
+.dd .ddChild li .description{color:#222;}
+.dd .ddChild li .ddlabel{color:#999;}
+.dd .ddChild li.hover{background-color:#999}
 .dd .ddChild li img{padding:0 6px 0 0;}
 .dd .ddChild li.optgroup{padding:0;}
 .dd .ddChild li.optgroup .optgroupTitle{padding:0 5px; font-weight:bold; font-style:italic}
 .dd .ddChild li.optgroup ul li{padding:5px 5px 5px 15px}
-.dd .ddChild li.selected{background-color:#d5d5d5; color:#000;}
+.dd .ddChild li.selected{background-color:#222; color:#999;}
