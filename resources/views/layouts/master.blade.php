@@ -173,6 +173,7 @@
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li>
                     <select id="select-country" style="width: 200px;margin-top: 8px;">
+
                         @foreach($key as $response)
                             <option value="{{ ($response) }}">{{$response}}</option>
                         @endforeach
