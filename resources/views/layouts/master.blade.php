@@ -174,7 +174,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
-                <li style="">
+                <li style="padding-top: 8px;">
                     <select id="select-country" style="width: 200px;">
                         <option value='ad' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag ad" data-title="Andorra">Andorra</option>
                         <option value='ae' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag ae" data-title="United Arab Emirates">United Arab Emirates</option>

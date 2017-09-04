@@ -18,7 +18,7 @@ color:#999999;
 }
 .ddcommon .clear{clear:both}
 .ddcommon .shadow{-moz-box-shadow:5px 5px 5px -5px #888888;-webkit-box-shadow:5px 5px 5px -5px #888888;box-shadow: 5px 5px 5px -5px #888888;}
-.ddcommon .text{color:#7e7e7e;padding:0; position:absolute; background:#fff; display:block; width:98%; height:98%; left:2px; top:0; border:none;}
+.ddcommon .text{color:#7e7e7e;padding:0; position:absolute; background:#222; display:block; width:98%; height:98%; left:2px; top:0; border:none;}
 .ddOutOfVision{position:relative; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline;}
 .borderRadius .shadow{-moz-box-shadow:5px 5px 5px -5px #888888;-webkit-box-shadow:5px 5px 5px -5px #888888;box-shadow: 5px 5px 5px -5px #888888;}
 .borderRadiusBtm .shadow{-moz-box-shadow:-5px -5px 5px -5px #888888;-webkit-box-shadow:-5px -5px 5px -5px #888888;box-shadow: -5px -5px 5px -5px #888888}
@@ -56,7 +56,7 @@ img.fnone{float:none !important}
 .dd .ddChild li{padding:5px; background-color:#444; border-bottom:1px solid #222;}
 .dd .ddChild li .description{color:#222;}
 .dd .ddChild li .ddlabel{color:#999;}
-.dd .ddChild li.hover{background-color:#999}
+.dd .ddChild li.hover{background-color:#222}
 .dd .ddChild li img{padding:0 6px 0 0;}
 .dd .ddChild li.optgroup{padding:0;}
 .dd .ddChild li.optgroup .optgroupTitle{padding:0 5px; font-weight:bold; font-style:italic}
