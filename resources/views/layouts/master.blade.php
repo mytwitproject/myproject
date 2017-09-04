@@ -171,7 +171,7 @@
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 3 <span class="caret"></span></a>
-                    <select>
+                    <select id="select-country">
                         @foreach($key as $response)
                             <option value="<?php echo($response) ?>">{{$response}}</option>
                         @endforeach
@@ -296,6 +296,12 @@
     function closeRightMenu() {
         document.getElementById("rightMenu").style.display = "none";
     }
+
+
+
+    $(document).ready(function () {
+        $('#select-country').selectize();
+    })
 </script>
 
 
