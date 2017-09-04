@@ -48,7 +48,7 @@ img.fnone{float:none !important}
 .dd .divider{border-left:1px solid #222; border-right:1px solid #444; right:24px;}
 .dd .arrow{width:16px;height:16px; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVR42mNgwAfKy8v/48I4FeA0AacVDFQBAP9wJkE/KhUMAAAAAElFTkSuQmCC") no-repeat scroll 0 0 transparent}
 .dd .ddTitle{color:#999;background:#222 url(../images/msdropdown/skin1/title-bg.gif) repeat-x left top;}
-.dd .ddTitle .ddTitleText{background: #222;padding:5px 20px 5px 5px;}
+.dd .ddTitle .ddTitleText{background: #222;padding:5px 20px 5px 5px;color:#999;}
 .dd .ddTitle .ddTitleText .ddTitleText{padding:0;}
 .dd .ddTitle .description{font-size:12px; color:#999}
 .dd .ddTitle .ddTitleText img{padding-right:5px;}
@@ -56,7 +56,7 @@ img.fnone{float:none !important}
 .dd .ddChild li{padding:5px; background-color:#222; border-bottom:1px solid #222;}
 .dd .ddChild li .description{color:#222;}
 .dd .ddChild li .ddlabel{color:#999;}
-.dd .ddChild li.hover{background-color:#222}
+.dd .ddChild li.hover{cursor: pointer;background: #444;color:#eee}
 .dd .ddChild li img{padding:0 6px 0 0;}
 .dd .ddChild li.optgroup{padding:0;}
 .dd .ddChild li.optgroup .optgroupTitle{padding:0 5px; font-weight:bold; font-style:italic}
