@@ -85,13 +85,29 @@ class MainController extends Controller{
         $all_query = [];
 
         for ($i = 0; $i <= 9; $i++) {
+            $all =[];
             if(isset($respons[$i])){
                 $result = $respons[$i]->query;
                 $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
-                $all_query[] = $result->statuses;
+                $result = $result->statuses;
+                foreach ($result as $result=>$val){
+                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
+                    $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
+                    $temp = preg_replace("/RT /", " ", $temp);
+                    $temp = preg_replace("/(@.*? )/", " ", $temp);
+                    $temp = explode('http', $temp);
+                    $full = ['full_text'=> $temp[0],
+                        'user_name'=>$val->user->screen_name,
+                        'img_url'=>$val->user->profile_image_url,
+                        'tweet_img'=>$tweet_image,
+                        'created_at'=>$val->created_at
+                    ];
+                    $all[] = $full;
+                }
+                $all_query[] = $all;
             }
-
         }
+        dd($all_query);
     }
 
     public function get_country(){ //-----------------------------------------------getting all county name and woeid
@@ -102,6 +118,7 @@ class MainController extends Controller{
         }
         $country = array_unique($country);
         $country['0'] = "Worldwide";
+        $country[] = "Iran";
         return view('layouts.master',["key"=>$country]);
 
     } 
