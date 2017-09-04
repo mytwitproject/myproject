@@ -12,7 +12,7 @@
     <script src="http://code.onion.com/fartscroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.1.21/tilt.jquery.min.js"></script>
-    {{Html::script('/js/jquery.dd.js')}}
+    {{Html::script('/js/jquery.dd.min.js')}}
     {{Html::style('/css/dd.css')}}
     {{Html::style('/css/flags.css')}}
     <style>
