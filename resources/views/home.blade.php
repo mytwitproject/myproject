@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 @extends("layouts.master")
 <html>
 <head>

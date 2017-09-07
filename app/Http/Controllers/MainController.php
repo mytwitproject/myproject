@@ -83,7 +83,6 @@ class MainController extends Controller{
         $respons = Twitter::getTrendsPlace(['id'=>1]);
         $respons = $respons['0']->trends;
         $all_query = [];
-
         for ($i = 0; $i <= 9; $i++) {
             $all =[];
             if(isset($respons[$i])){
@@ -91,7 +90,7 @@ class MainController extends Controller{
                 $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
                 $result = $result->statuses;
                 foreach ($result as $result=>$val){
-                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
+                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null;
                     $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
                     $temp = preg_replace("/RT /", " ", $temp);
                     $temp = preg_replace("/(@.*? )/", " ", $temp);
@@ -107,7 +106,7 @@ class MainController extends Controller{
                 $all_query[] = $all;
             }
         }
-        dd($all_query);
+        return $all_query;
     }
 
     public function get_country(){ //-----------------------------------------------getting all county name and woeid
