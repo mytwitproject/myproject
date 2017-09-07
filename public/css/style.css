@@ -1,5 +1,5 @@
 body{
-    background: url('../images/bg.jpeg') 50% 50%;
+    background: url('../images/bg.jpeg') 50% 50% fixed;
     background-size: cover;
 }
 
