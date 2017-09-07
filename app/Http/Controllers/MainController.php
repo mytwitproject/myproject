@@ -21,7 +21,7 @@ class MainController extends Controller{
             $hashtag = $request->hashtag;
             $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
             $response = $response->statuses;
-            $all =[];
+            $all = [];
 
             foreach($response as $response=>$val){
                 $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
@@ -87,9 +87,9 @@ class MainController extends Controller{
             $all =[];
             if(isset($respons[$i])){
                 $result = $respons[$i]->query;
-                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type=>"popular' ]);
+                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type'=>'popular' ]);
                 $result = $result->statuses;
-                foreach ($result as $result=>$val){
+                foreach ($result as $k=>$val){
                     $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null;
                     $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
                     $temp = preg_replace("/RT /", " ", $temp);
@@ -103,7 +103,7 @@ class MainController extends Controller{
                     ];
                     $all[] = $full;
                 }
-                $all_query[] = $all;
+                $all_query[$respons[$i]->query] = $all;
             }
         }
         return view('home',[
