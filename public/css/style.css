@@ -9,6 +9,7 @@ body{
 .status_divider{
     height: 50px;
     width:100%;
+    display: inline-block;
     background: linear-gradient(235deg,rgb(39, 174, 96),rgb(52, 152, 219),rgb(41, 128, 185),rgb(22, 160, 133),rgb(142, 68, 173));
     text-align:center;
     color:rgb(236, 240, 241);
