@@ -2,6 +2,7 @@
 
 <style>
     @section("content_css")
+
     html {
         font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
         font-size: 14px;
@@ -28,7 +29,7 @@
     }
 
     .card-holder{
-        background-image: linear-gradient(135deg, rgba(142, 68, 173,0.6),0%, rgba(52, 152, 219,0.6),100%);
+        background-image: linear-gradient(135deg, rgba(142, 68, 173,0.6), rgba(52, 152, 219,0.6));
         padding: 5px 10px;
         transform-style: preserve-3d;
         margin: 15px 0;
