@@ -176,8 +176,6 @@
     </div>
     <script>$(document).ready(function () {
             const tilt = $('.js-tilt').tilt({
-                glare: true,
-                maxGlare: .5,
                 scale: 1.0005
             });
         })</script>
