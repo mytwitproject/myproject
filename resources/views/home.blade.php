@@ -8,7 +8,7 @@
 @section("cont")
     <div class="row">
         @foreach($key as $response=>$group)
-            <div class="status_divider">{{$response}}</div>
+            <div class="status_divider">{{urldecode($response)}}</div>
             @foreach($group as $id=>$val)
                 <div class="col-sm-12 col-md-6" style="vertical-align: top;float: right">
                     <div class="card-holder js-tilt" >
