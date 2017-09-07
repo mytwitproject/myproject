@@ -8,6 +8,7 @@
 @section("cont")
     <div class="row">
         @foreach($key as $response=>$group)
+            <div class="divider">{{$key}}</div>
             @foreach($group as $id=>$val)
                 <div class="col-sm-12 col-md-6" style="vertical-align: top;float: right">
                     <div class="card-holder js-tilt" >
@@ -36,7 +37,6 @@
 </body>
 
 <script>$(document).ready(function () {
-        fartscroll();
         const tilt = $('.js-tilt').tilt({
             glare: true,
             maxGlare: .5,
