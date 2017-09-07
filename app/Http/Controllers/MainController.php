@@ -106,7 +106,9 @@ class MainController extends Controller{
                 $all_query[] = $all;
             }
         }
-        return $all_query;
+        return view('home',[
+            'key'=>$all_query
+        ]);
     }
 
     public function get_country(){ //-----------------------------------------------getting all county name and woeid
