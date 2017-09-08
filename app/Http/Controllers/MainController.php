@@ -80,7 +80,9 @@ class MainController extends Controller{
     }
 
     public function Most_recent(){//----------------------------------------------------------getting 10 top trend
-        $respons = Twitter::getTrendsPlace(['id'=>1]);
+
+        $respons = Twitter::getTrendsPlace([ "id" => 1 ]);
+
         $respons = $respons['0']->trends;
         $all_query = [];
         for ($i = 0; $i <= 9; $i++) {
@@ -114,13 +116,23 @@ class MainController extends Controller{
     public function get_country(){ //-----------------------------------------------getting all county name and woeid
 
         $respon = Twitter::getTrendsAvailable();
+
         foreach($respon as $respon=>$val) {
-            $country[] = $val->country;
+            if(($val->parentid)==1){
+                $country[ $val->woeid] =$val->name;
+
+            }
         }
-        $country = array_unique($country);
-        $country['0'] = "Worldwide";
-        $country[] = "Iran";
-        return view('layouts.master',["key"=>$country]);
+
+       // $country = array_unique($country);
+
+        $country[1] ="Worldwide";
+        $country[23424851] = "Iran";
+        return view('layouts.master',[
+            "key"=>$country,
+            'lastID'=>'23424851',
+
+        ]);
 
     } 
 }

@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home','MainController@Most_recent');
+
 Route::get('/child', function () {
     return view('child');
 });
