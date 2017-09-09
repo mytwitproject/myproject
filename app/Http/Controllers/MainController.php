@@ -14,21 +14,25 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Symfony\Component\HttpFoundation\Request;
 use Thujohn\Twitter\Facades\Twitter;
-class MainController extends Controller{
+class MainController extends Controller
+{
 
-    public function trendsbyhashtag(Request $request){
-        try
-        {
-            session_start();
+    public function trendsbyhashtag(Request $request)
+    {
+        try {
+
+            $country = $request->session()->get('key');
+            dd($country);
+            $temp = explode('-',$country);
             $hashtag = $request->hashtag;
-            $country_name = $_SESSION["selected"];
-            dd($country_name);
 
-            if($country_name == "Worldwide"){
-                $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
+            $country_name = $temp[1];
+
+            if ($country_name == "Worldwide") {
+                $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended",]);
                 $response = $response->statuses;
-            }else{
-                $respon = Twitter::getGeoSearch(['query'=>$country_name]);
+            } else {
+                $respon = Twitter::getGeoSearch(['query' => $country_name]);
                 $long = $respon->result->places[0]->centroid[0];
                 $lat = $respon->result->places[0]->centroid[1];
                 $corner_long = $respon->result->places[0]->bounding_box->coordinates['0']['0']['0'];
@@ -48,33 +52,31 @@ class MainController extends Controller{
                 $distance = $angle * $earthRadius;
                 //---------------------------------------------------
 
-                $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
+                $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended", 'geocode' => "32.39654265,54.146559591075,100mi", 'result_type=>"popular']);
 
             }
 
 
             $all = [];
-            foreach($response as $response=>$val){
-                $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
+            foreach ($response as $response => $val) {
+                $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
                 $temp = preg_replace("/RT /", " ", $temp);
                 $temp = preg_replace("/(@.*? )/", " ", $temp);
                 $temp = explode('http', $temp);
                 //TODO:REMOVE EXTRA CHARACERS FROM $TEMP
-                $full = ['full_text'=> $temp[0],
-                    'user_name'=>$val->user->screen_name,
-                    'img_url'=>$val->user->profile_image_url,
-                    'tweet_img'=>$tweet_image,
-                    'created_at'=>$val->created_at
+                $full = ['full_text' => $temp[0],
+                    'user_name' => $val->user->screen_name,
+                    'img_url' => $val->user->profile_image_url,
+                    'tweet_img' => $tweet_image,
+                    'created_at' => $val->created_at
                 ];
                 $all[] = $full;
             }
 
-            return view('content',["key"=>$all]);
+            return view('content', ["key" => $all]);
 
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             // dd(Twitter::error());
             // echo json_encode($response);
             dd(Twitter::logs());
@@ -82,60 +84,83 @@ class MainController extends Controller{
 
     }
 
-    public function Most_recent(){//----------------------------------------------------------getting 10 top trend
+    public function Most_recent()
+    {//----------------------------------------------------------getting 10 top trend
 
-        $respons = Twitter::getTrendsPlace([ "id" => 1 ]);
+        $respons = Twitter::getTrendsPlace(["id" => 1]);
 
         $respons = $respons['0']->trends;
         $all_query = [];
         for ($i = 0; $i <= 9; $i++) {
-            $all =[];
-            if(isset($respons[$i])){
+            $all = [];
+            if (isset($respons[$i])) {
                 $result = $respons[$i]->query;
-                $result = Twitter::getSearch(['q'=>$result, 'count' => 5, "tweet_mode" => "extended",'result_type'=>'popular' ]);
+                $result = Twitter::getSearch(['q' => $result, 'count' => 5, "tweet_mode" => "extended", 'result_type' => 'popular']);
                 $result = $result->statuses;
-                foreach ($result as $k=>$val){
-                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null;
+                foreach ($result as $k => $val) {
+                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
                     $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
                     $temp = preg_replace("/RT /", " ", $temp);
                     $temp = preg_replace("/(@.*? )/", " ", $temp);
                     $temp = explode('http', $temp);
-                    $full = ['full_text'=> $temp[0],
-                        'user_name'=>$val->user->screen_name,
-                        'img_url'=>$val->user->profile_image_url,
-                        'tweet_img'=>$tweet_image,
-                        'created_at'=>$val->created_at
+                    $full = ['full_text' => $temp[0],
+                        'user_name' => $val->user->screen_name,
+                        'img_url' => $val->user->profile_image_url,
+                        'tweet_img' => $tweet_image,
+                        'created_at' => $val->created_at
                     ];
                     $all[] = $full;
                 }
                 $all_query[$respons[$i]->query] = $all;
             }
         }
-        return view('home',[
-            'key'=>$all_query
+        return view('home', [
+            'k' => $all_query
         ]);
     }
 
-    public function get_country(){ //-----------------------------------------------getting all county name and woeid
+    //-----------------------------------------------------------------
+    public function get_country()
+    {
+        return view('layouts.master');
+    }
 
-        $respon = Twitter::getTrendsAvailable();
+    //----------------------------------------------------------getting 10 top trend
+    public function Most_recent_country(Request $request)
+    {
+        $request->session()->put('key','text');
+        $country = $_GET['size'];
+        $temp = explode('-',$country);
+        $respons = Twitter::getTrendsPlace(["id" => $temp[0]]);
 
-        foreach($respon as $respon=>$val) {
-            if(($val->parentid)==1){
-                $country[ $val->woeid] =$val->name;
-
+        $respons = $respons['0']->trends;
+        $all_query = [];
+        for ($i = 0; $i <= 9; $i++) {
+            $all = [];
+            if (isset($respons[$i])) {
+                $result = $respons[$i]->query;
+                $result = Twitter::getSearch(['q' => $result, 'count' => 5, "tweet_mode" => "extended", 'result_type' => 'popular']);
+                $result = $result->statuses;
+                foreach ($result as $k => $val) {
+                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
+                    $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
+                    $temp = preg_replace("/RT /", " ", $temp);
+                    $temp = preg_replace("/(@.*? )/", " ", $temp);
+                    $temp = explode('http', $temp);
+                    $full = ['full_text' => $temp[0],
+                        'user_name' => $val->user->screen_name,
+                        'img_url' => $val->user->profile_image_url,
+                        'tweet_img' => $tweet_image,
+                        'created_at' => $val->created_at
+                    ];
+                    $all[] = $full;
+                }
+                $all_query[$respons[$i]->query] = $all;
             }
         }
-
-        // $country = array_unique($country);
-
-        $country[1] ="Worldwide";
-        $country[23424851] = "Iran";
-        return view('layouts.master',[
-            "key"=>$country,
-            'lastID'=>'1',
-
+        return view('home', [
+            'k' => $all_query,
+            'lastID'=>1
         ]);
-
     }
 }

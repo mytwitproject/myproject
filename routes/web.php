@@ -17,6 +17,8 @@ Route::get('/', function () {
 });
 Route::get('/home',['as'=>'home','uses'=>'MainController@Most_recent']);
 
+Route::get('/changehome',['as'=>'changehome','uses'=>'MainController@Most_recent_country']);
+
 Route::get('/child', function () {
     return view('child');
 });

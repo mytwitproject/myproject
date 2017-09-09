@@ -2,7 +2,7 @@
 
 @section("cont")
     <div class="row">
-        @foreach($key as $response=>$group)
+        @foreach($k as $response=>$group)
             <div class="status_divider">{{urldecode($response)}}</div>
             @foreach($group as $id=>$val)
                 <div class="col-sm-12 col-md-6" style="vertical-align: top;">

@@ -1,6 +1,24 @@
 <?php
 session_start();
 use Illuminate\Support\Facades\Input;
+$respon = Twitter::getTrendsAvailable();
+
+foreach ($respon as $respon => $val) {
+    if (($val->parentid) == 1) {
+        $country[$val->woeid+"-"+$val->name] = $val->name;
+
+    }
+}
+
+// $country = array_unique($country);
+
+$country[1] = "Worldwide";
+$country[23424851] = "Iran";
+
+
+        $lastID = 1;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,8 +208,9 @@ use Illuminate\Support\Facades\Input;
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li style="padding-top: 8px;">
-                    {!! Form::open(['route'=>['home']]) !!}
-                         {{ Form::select('size', $key, $lastID,['id'=>'select-country'],['id' => 'some-id','onchange' => 'this.form.submit()']) }}
+                    {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
+                         {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id").val());this.form.submit()']) }}
+                         {{ Form::hidden('text','',['id' => 'country_name']) }}
                     {!! Form::close() !!}
                 </li>
             </ul>
