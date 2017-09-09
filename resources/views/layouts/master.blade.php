@@ -208,9 +208,8 @@ $country[23424851] = "Iran";
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li style="padding-top: 8px;">
-                    {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
-                         {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id").val());this.form.submit()']) }}
-                         {{ Form::hidden('text','',['id' => 'country_name']) }}
+                    {!! Form::open(['route'=>['home']]) !!}
+                         {{ Form::select('size', $key, $lastID,['id'=>'select-country'],['id' => 'some-id','onchange' => 'this.form.submit()']) }}
                     {!! Form::close() !!}
                 </li>
             </ul>
