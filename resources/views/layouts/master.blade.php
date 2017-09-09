@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+use Illuminate\Support\Facades\Input;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,9 +190,9 @@ session_start();
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li style="padding-top: 8px;">
-
-                    {{ Form::select('size', $key, $lastID,['id'=>'select-country']) }}
-
+                    {!! Form::open(['route'=>['home']]) !!}
+                         {{ Form::select('size', $key, $lastID,['id'=>'select-country'],['id' => 'some-id','onchange' => 'this.form.submit()']) }}
+                    {!! Form::close() !!}
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

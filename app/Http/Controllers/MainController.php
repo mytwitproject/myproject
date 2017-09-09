@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Created by PhpStorm.
  * User: Tina Re
@@ -6,7 +8,6 @@
  * Time: 8:44 PM
  */
 namespace App\Http\Controllers;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,11 +19,41 @@ class MainController extends Controller{
     public function trendsbyhashtag(Request $request){
         try
         {
+            session_start();
             $hashtag = $request->hashtag;
-            $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
-            $response = $response->statuses;
-            $all = [];
+            $country_name = $_SESSION["selected"];
+            dd($country_name);
 
+            if($country_name == "Worldwide"){
+                $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended", ]);
+                $response = $response->statuses;
+            }else{
+                $respon = Twitter::getGeoSearch(['query'=>$country_name]);
+                $long = $respon->result->places[0]->centroid[0];
+                $lat = $respon->result->places[0]->centroid[1];
+                $corner_long = $respon->result->places[0]->bounding_box->coordinates['0']['0']['0'];
+                $corner_lat = $respon->result->places[0]->bounding_box->coordinates['0']['0']['1'];
+                $earthRadius = 3959;
+                //-----------------------------------------------getting the distance between center and corner in mile
+                $latFrom = deg2rad($lat);
+                $lonFrom = deg2rad($long);
+                $latTo = deg2rad($corner_lat);
+                $lonTo = deg2rad($corner_long);
+
+                $latDelta = $latTo - $latFrom;
+                $lonDelta = $lonTo - $lonFrom;
+
+                $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+                        cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+                $distance = $angle * $earthRadius;
+                //---------------------------------------------------
+
+                $response = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
+
+            }
+
+
+            $all = [];
             foreach($response as $response=>$val){
                 $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url:null ;
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
@@ -39,34 +70,6 @@ class MainController extends Controller{
                 $all[] = $full;
             }
 
-            $respon = Twitter::getGeoSearch(['query'=>"Turkey"]);
-
-            $long = $respon->result->places[0]->centroid[0];
-            $lat = $respon->result->places[0]->centroid[1];
-            $corner_long = $respon->result->places[0]->bounding_box->coordinates['0']['0']['0'];
-            $corner_lat = $respon->result->places[0]->bounding_box->coordinates['0']['0']['1'];
-            $earthRadius = 3959;
-            //-----------------------------------------------getting the distance between center and corner in mile
-
-            $latFrom = deg2rad($lat);
-            $lonFrom = deg2rad($long);
-            $latTo = deg2rad($corner_lat);
-            $lonTo = deg2rad($corner_long);
-
-            $latDelta = $latTo - $latFrom;
-            $lonDelta = $lonTo - $lonFrom;
-
-            $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
-                    cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
-            $distance = $angle * $earthRadius;
-
-
-
-            $respo = Twitter::getSearch(['q'=>$hashtag, 'count' => 15, "tweet_mode" => "extended",'geocode'=>"32.39654265,54.146559591075,100mi",'result_type=>"popular' ]);
-
-
-            //echo json_encode($respo);
-            //$full = array_unique($full);
             return view('content',["key"=>$all]);
 
         }
@@ -124,15 +127,15 @@ class MainController extends Controller{
             }
         }
 
-       // $country = array_unique($country);
+        // $country = array_unique($country);
 
         $country[1] ="Worldwide";
         $country[23424851] = "Iran";
         return view('layouts.master',[
             "key"=>$country,
-            'lastID'=>'23424851',
+            'lastID'=>'1',
 
         ]);
 
-    } 
+    }
 }
