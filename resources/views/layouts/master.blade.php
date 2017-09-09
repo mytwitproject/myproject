@@ -191,7 +191,7 @@ use Illuminate\Support\Facades\Input;
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li style="padding-top: 8px;">
                     {!! Form::open(['route'=>['home']]) !!}
-                         {{ Form::select('size', $key, $lastID,['id'=>'select-country'],['id' => 'some-id','onchange' => 'this.form.submit()']) }}
+                         {{ Form::select('size', $key, $lastID,['id' => 'some-id','onchange' => 'this.form.submit()']) }}
                     {!! Form::close() !!}
                 </li>
             </ul>
