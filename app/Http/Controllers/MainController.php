@@ -20,9 +20,8 @@ class MainController extends Controller
     public function trendsbyhashtag(Request $request)
     {
         try {
-
-            $country = $request->session()->get('key');
-            dd($country);
+            $country_name = $request->session()->get('key');
+            dd($country_name);
             $temp = explode('-',$country);
             $hashtag = $request->hashtag;
 
@@ -128,10 +127,8 @@ class MainController extends Controller
     //----------------------------------------------------------getting 10 top trend
     public function Most_recent_country(Request $request)
     {
-        $request->session()->put('key','text');
-        $country = $_GET['size'];
-        $temp = explode('-',$country);
-        $respons = Twitter::getTrendsPlace(["id" => $temp[0]]);
+        $request->session()->put('key',$request->input('text'));
+        $respons = Twitter::getTrendsPlace(["id" => $_GET['size']]);
 
         $respons = $respons['0']->trends;
         $all_query = [];
