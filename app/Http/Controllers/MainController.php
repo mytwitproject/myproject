@@ -19,10 +19,11 @@ class MainController extends Controller
 
     public function trendsbyhashtag(Request $request)
     {
+        $request->flash();
         $country_name = $request->session()->get('key');
         $request->session()->put('text_search', $request->hashtag);
         $hashtag = $request->hashtag;
-        $info = $country_name . "-" . $hashtag;
+        $info = $country_name . "-" . $hashtag . "-" . $request->session()->get('selected_woeid');
         return $this->trends_byhashtag($info);
     }
 
@@ -31,6 +32,7 @@ class MainController extends Controller
         $temp = explode('-',$input);
         $country_name = $temp[0];
         $hashtag = $temp[1];
+        $selected_woeid = $temp[2];
 
         try {
             if ($country_name == "Worldwide") {
@@ -57,7 +59,7 @@ class MainController extends Controller
                 $distance = $angle * $earthRadius;
                 //---------------------------------------------------
 
-                $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended", 'geocode' => "32.39654265,54.146559591075,100mi", 'result_type=>"popular']);
+                $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended", 'geocode' => $lat . "," . $long . "," .$distance, 'result_type=>"popular']);
                 $response = $response->statuses;
             }
 
@@ -80,7 +82,11 @@ class MainController extends Controller
                 $all[] = $full;
             }
 
-            return view('content', ["key" => $all]);
+            return view('content', [
+                "key" => $all,
+                "selected_woeid" => $selected_woeid,
+                'old_input' => $hashtag
+            ]);
 
         } catch (Exception $e) {
             // dd(Twitter::error());
@@ -93,6 +99,7 @@ class MainController extends Controller
     {//----------------------------------------------------------getting 10 top trend
         $request->session()->put('key','Worldwide');
         $request->session()->put('text_search','');
+        $request->session()->put('selected_woeid',1);
 
         $respons = Twitter::getTrendsPlace(["id" => 1]);
 
@@ -122,7 +129,9 @@ class MainController extends Controller
             }
         }
         return view('home', [
-            'k' => $all_query
+            'k' => $all_query,
+            'selected_woeid' => 1,
+            'old_input' => ''
         ]);
     }
 
@@ -135,7 +144,9 @@ class MainController extends Controller
     //----------------------------------------------------------getting 10 top trend
     public function Most_recent_country(Request $request)
     {
+        $oldinput = $request->old('hashtag');
         $request->session()->put('key', $request->input('text'));
+        $request->session()->put('selected_woeid',$_GET['size']);
 
         if ($request->session()->get('text_search') == '') {
             $respons = Twitter::getTrendsPlace(["id" => $_GET['size']]);
@@ -166,10 +177,11 @@ class MainController extends Controller
             }
             return view('home', [
                 'k' => $all_query,
-                'lastID' => 1
+                'selected_woeid' => $request->session()->get('selected_woeid'),
+                'old_input' => $oldinput
             ]);
         } else {
-            $info = $request->session()->get('key') . "-" . $request->session()->get('text_search');
+            $info = $request->session()->get('key') . "-" . $request->session()->get('text_search') . "-" . $request->session()->get('selected_woeid');
             return $this->trends_byhashtag($info);
         }
     }

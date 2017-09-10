@@ -16,7 +16,6 @@
                                 @if($val['tweet_img']!="null")
                                     <img class="card-image-post" src="<?php echo($val['tweet_img']); ?>">
                                 @endif
-                                <h4 class="card-title">Tawshif Ahsan Khan</h4>
                                 <div class="card-text">
                                     {{$val['full_text']}}
                                 </div>

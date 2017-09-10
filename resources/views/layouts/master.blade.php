@@ -15,8 +15,8 @@ foreach ($respon as $respon => $val) {
 $country[1] = "Worldwide";
 $country[23424851] = "Iran";
 
-
-$lastID = 1;
+$oldinput = $old_input;
+$lastID = $selected_woeid;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -208,7 +208,7 @@ $lastID = 1;
                 <li style="padding-top: 8px;">
                     {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
                          {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id option:selected").text());this.form.submit()']) }}
-                         {{ Form::hidden('text','',['id' => 'country_name']) }}
+                         {{ Form::hidden('text',$oldinput,['id' => 'country_name']) }}
                     {!! Form::close() !!}
                 </li>
             </ul>
