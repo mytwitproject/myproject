@@ -28,7 +28,6 @@ class MainController extends Controller
 
 
     public function trends_byhashtag($input){
-
         $temp = explode('-',$input);
         $country_name = $temp[0];
         $hashtag = $temp[1];
@@ -59,12 +58,12 @@ class MainController extends Controller
                 //---------------------------------------------------
 
                 $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended", 'geocode' => "32.39654265,54.146559591075,100mi", 'result_type=>"popular']);
-
+                $response = $response->statuses;
             }
 
-            $response = $response->statuses;
+
             $all = [];
-          
+
             foreach ($response as $response => $val) {
                 $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
@@ -171,7 +170,7 @@ class MainController extends Controller
             ]);
         } else {
             $info = $request->session()->get('key') . "-" . $request->session()->get('text_search');
-            $this.$this->trends_byhashtag($info);
+            return $this->trends_byhashtag($info);
         }
     }
 
