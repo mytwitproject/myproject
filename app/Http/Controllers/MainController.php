@@ -23,7 +23,7 @@ class MainController extends Controller
         $request->session()->put('text_search', $request->hashtag);
         $hashtag = $request->hashtag;
         $info = $country_name . "-" . $hashtag;
-        $this->trends_byhashtag($info);
+        return $this->trends_byhashtag($info);
     }
 
 
@@ -62,8 +62,9 @@ class MainController extends Controller
 
             }
 
-
+            $response = $response->statuses;
             $all = [];
+          
             foreach ($response as $response => $val) {
                 $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
                 $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
