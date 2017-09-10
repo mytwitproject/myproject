@@ -19,14 +19,21 @@ class MainController extends Controller
 
     public function trendsbyhashtag(Request $request)
     {
+        $country_name = $request->session()->get('key');
+        $request->session()->put('text_search', $request->hashtag);
+        $hashtag = $request->hashtag;
+        $info = $country_name . "-" . $hashtag;
+        $this->trends_byhashtag($info);
+    }
+
+
+    public function trends_byhashtag($input){
+
+        $temp = explode('-',$input);
+        $country_name = $temp[0];
+        $hashtag = $temp[1];
+
         try {
-            $country_name = $request->session()->get('key');
-            dd($country_name);
-            $temp = explode('-',$country);
-            $hashtag = $request->hashtag;
-
-            $country_name = $temp[1];
-
             if ($country_name == "Worldwide") {
                 $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended",]);
                 $response = $response->statuses;
@@ -80,11 +87,12 @@ class MainController extends Controller
             // echo json_encode($response);
             dd(Twitter::logs());
         }
-
     }
 
-    public function Most_recent()
+    public function Most_recent(Request $request)
     {//----------------------------------------------------------getting 10 top trend
+        $request->session()->put('key','Worldwide');
+        $request->session()->put('text_search','');
 
         $respons = Twitter::getTrendsPlace(["id" => 1]);
 
@@ -127,37 +135,43 @@ class MainController extends Controller
     //----------------------------------------------------------getting 10 top trend
     public function Most_recent_country(Request $request)
     {
-        $request->session()->put('key',$request->input('text'));
-        $respons = Twitter::getTrendsPlace(["id" => $_GET['size']]);
+        $request->session()->put('key', $request->input('text'));
 
-        $respons = $respons['0']->trends;
-        $all_query = [];
-        for ($i = 0; $i <= 9; $i++) {
-            $all = [];
-            if (isset($respons[$i])) {
-                $result = $respons[$i]->query;
-                $result = Twitter::getSearch(['q' => $result, 'count' => 5, "tweet_mode" => "extended", 'result_type' => 'popular']);
-                $result = $result->statuses;
-                foreach ($result as $k => $val) {
-                    $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
-                    $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
-                    $temp = preg_replace("/RT /", " ", $temp);
-                    $temp = preg_replace("/(@.*? )/", " ", $temp);
-                    $temp = explode('http', $temp);
-                    $full = ['full_text' => $temp[0],
-                        'user_name' => $val->user->screen_name,
-                        'img_url' => $val->user->profile_image_url,
-                        'tweet_img' => $tweet_image,
-                        'created_at' => $val->created_at
-                    ];
-                    $all[] = $full;
+        if ($request->session()->get('text_search') == '') {
+            $respons = Twitter::getTrendsPlace(["id" => $_GET['size']]);
+            $respons = $respons['0']->trends;
+            $all_query = [];
+            for ($i = 0; $i <= 9; $i++) {
+                $all = [];
+                if (isset($respons[$i])) {
+                    $result = $respons[$i]->query;
+                    $result = Twitter::getSearch(['q' => $result, 'count' => 5, "tweet_mode" => "extended", 'result_type' => 'popular']);
+                    $result = $result->statuses;
+                    foreach ($result as $k => $val) {
+                        $tweet_image = isset($val->entities->media) ? $val->entities->media[0]->media_url : null;
+                        $temp = isset($val->retweeted_status) ? $val->retweeted_status->full_text : $val->full_text;
+                        $temp = preg_replace("/RT /", " ", $temp);
+                        $temp = preg_replace("/(@.*? )/", " ", $temp);
+                        $temp = explode('http', $temp);
+                        $full = ['full_text' => $temp[0],
+                            'user_name' => $val->user->screen_name,
+                            'img_url' => $val->user->profile_image_url,
+                            'tweet_img' => $tweet_image,
+                            'created_at' => $val->created_at
+                        ];
+                        $all[] = $full;
+                    }
+                    $all_query[$respons[$i]->query] = $all;
                 }
-                $all_query[$respons[$i]->query] = $all;
             }
+            return view('home', [
+                'k' => $all_query,
+                'lastID' => 1
+            ]);
+        } else {
+            $info = $request->session()->get('key') . "-" . $request->session()->get('text_search');
+            $this.$this->trends_byhashtag($info);
         }
-        return view('home', [
-            'k' => $all_query,
-            'lastID'=>1
-        ]);
     }
+
 }

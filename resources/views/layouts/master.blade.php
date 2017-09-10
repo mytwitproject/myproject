@@ -207,7 +207,7 @@ $lastID = 1;
                 <li><a href="{{ url('country') }}">Country</a></li>
                 <li style="padding-top: 8px;">
                     {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
-                         {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id").val());this.form.submit()']) }}
+                         {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id option:selected").text());this.form.submit()']) }}
                          {{ Form::hidden('text','',['id' => 'country_name']) }}
                     {!! Form::close() !!}
                 </li>
@@ -217,12 +217,9 @@ $lastID = 1;
                     {!! Form::open(['method'=>'post','route' => ['trensbyhashtag'],'class'=>'navbar-form navbar-left']) !!}
                     <div class="input-group">
                         {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
-
                         <div class="input-group-btn">
                             {{ Form::submit('',['class'=>"btn btn-default"]) }}
-
                             <i class="glyphicon glyphicon-search"></i>
-
                         </div>
                     </div>
                     {!! Form::close() !!}
