@@ -323,3 +323,10 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
+
+#some-id, #some-id option{
+    padding:10px;
+    background: #333;
+    color:#fff;
+}
