@@ -26,16 +26,16 @@ $lastID = $selected_woeid;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {{Html::style('/css/dd.css')}}
     {{Html::style('/css/flags.css')}}
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap3.css">
     {{Html::style('/css/style.css')}}
 
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.1.21/tilt.jquery.min.js"></script>
     {{Html::script('/js/jquery.dd.min.js')}}
 
     <style>
@@ -74,8 +74,7 @@ $lastID = $selected_woeid;
                     <div class="input-group">
                         {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
                         <div class="input-group-btn">
-                            {{ Form::submit('',['class'=>"btn btn-default"]) }}
-                            <i class="fa fa-search"></i>
+                            <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span></button>
                         </div>
                     </div>
                     {!! Form::close() !!}
