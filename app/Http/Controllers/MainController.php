@@ -117,7 +117,8 @@ class MainController extends Controller
                     $temp = preg_replace("/RT /", " ", $temp);
                     $temp = preg_replace("/(@.*? )/", " ", $temp);
                     $temp = explode('http', $temp);
-                    $full = ['full_text' => $temp[0],
+                    $full = [
+                        'full_text' => $temp[0],
                         'user_name' => $val->user->screen_name,
                         'img_url' => $val->user->profile_image_url,
                         'tweet_img' => $tweet_image,

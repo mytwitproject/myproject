@@ -6,7 +6,6 @@ $respon = Twitter::getTrendsAvailable();
 foreach ($respon as $respon => $val) {
     if (($val->parentid) == 1) {
         $country[$val->woeid] = $val->name;
-
     }
 }
 

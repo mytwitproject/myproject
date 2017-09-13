@@ -9,12 +9,12 @@
                     <div class="card-holder js-tilt" >
                         <div class="card">
                             <div class="card-title">
-                                <img class="img-circle card-img-top" src="<?php echo($val['img_url']); ?>">
+                                <img class="img-circle card-img-top" src="{{$val['img_url']}}">
                                 <div class="username">{{'@'}}{{$val['user_name']}}</div>
                             </div>
                             <div class="card-block">
                                 @if($val['tweet_img']!="null")
-                                    <img class="card-image-post" src="<?php echo($val['tweet_img']); ?>">
+                                    <img class="card-image-post" src="{{$val['tweet_img']}}">
                                 @endif
                                 <div class="card-text">
                                     {{$val['full_text']}}
@@ -27,9 +27,9 @@
         @endforeach
     </div>
     <script>$(document).ready(function () {
-            const tilt = $('.js-tilt').tilt({
-                scale: 1.0005
-            });
+//            const tilt = $('.js-tilt').tilt({
+//                scale: 1.0005
+//            });
         })</script>
 @endsection
 
