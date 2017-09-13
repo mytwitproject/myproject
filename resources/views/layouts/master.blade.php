@@ -61,7 +61,7 @@ $lastID = $selected_woeid;
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
                 <li><a href="{{ url('country') }}">Country</a></li>
-                <li style="padding-top: 8px;">
+                <li>
                     {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
                     {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id option:selected").text());this.form.submit()']) }}
                     {{ Form::hidden('text',$oldinput,['id' => 'country_name']) }}
@@ -91,7 +91,7 @@ $lastID = $selected_woeid;
 
 {{--//-------------------------------sidebar section--}}
 <div class="container-fluid">
-    <div class="row">
+    {{--<div class="row">--}}
         {{--<div class="col-sm-3">--}}
         {{--<div class="nav-side-menu">--}}
         {{--<div class="brand">Brand Logo</div>--}}
@@ -140,12 +140,11 @@ $lastID = $selected_woeid;
 
         {{--//------------------------------------------end of sidebar--}}
 
-
         {{--Main content--}}
-        <div class="col-md-12" style="padding-top: 50px;">
+
             @yield("cont")
-        </div>
-    </div>
+
+    {{--</div>--}}
 </div>
 
 
