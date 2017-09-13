@@ -75,7 +75,7 @@ $lastID = $selected_woeid;
                         {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
                         <div class="input-group-btn">
                             {{ Form::submit('',['class'=>"btn btn-default"]) }}
-                            <i class="glyphicon glyphicon-search"></i>
+                            <i class="fa fa-search"></i>
                         </div>
                     </div>
                     {!! Form::close() !!}

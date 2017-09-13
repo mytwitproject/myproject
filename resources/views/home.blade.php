@@ -1,10 +1,10 @@
 @extends("layouts.master")
 
 @section("cont")
-    <div class="row">
-        @foreach($k as $response=>$group)
-            <div class="status_divider">{{urldecode($response)}}</div>
-            @foreach($group as $id=>$val)
+    @foreach($k as $response=>$group)
+        <div class="status_divider">{{urldecode($response)}}</div>
+        @foreach($group as $id=>$val)
+            <div class="row">
                 <div class="card">
                     <div class="card-title">
                         <div class="username"> {{'@'.$val['user_name']}} </div>
@@ -12,49 +12,38 @@
                     </div>
                     <div class="card-block">
                         <img class="img-circle card-img-top" src="{{str_replace("normal","400x400",$val['img_url'])}}">
-
-
                         <div class="card-text">
                             {{$val['full_text']}}
                         </div>
-
-
                         @if($val['tweet_img']!="null")
                             <hr>
                             <img class="card-image-post" src="{{$val['tweet_img']}}">
                         @endif
-
                     </div>
                 </div>
+            </div>
 
-
-
-
-
-
-
-
-                {{--<div class="col-sm-12 col-md-6" style="vertical-align: top;">--}}
-                    {{--<div class="card-holder js-tilt" >--}}
-                        {{--<div class="card">--}}
-                            {{--<div class="card-title">--}}
-                                {{--<img class="img-circle card-img-top" src="{{$val['img_url']}}">--}}
-                                {{--<div class="username">{{'@'}}{{$val['user_name']}}</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="card-block">--}}
-                                {{--@if($val['tweet_img']!="null")--}}
-                                    {{--<img class="card-image-post" src="{{$val['tweet_img']}}">--}}
-                                {{--@endif--}}
-                                {{--<div class="card-text">--}}
-                                    {{--{{$val['full_text']}}--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            @endforeach
+            {{--<div class="col-sm-12 col-md-6" style="vertical-align: top;">--}}
+            {{--<div class="card-holder js-tilt" >--}}
+            {{--<div class="card">--}}
+            {{--<div class="card-title">--}}
+            {{--<img class="img-circle card-img-top" src="{{$val['img_url']}}">--}}
+            {{--<div class="username">{{'@'}}{{$val['user_name']}}</div>--}}
+            {{--</div>--}}
+            {{--<div class="card-block">--}}
+            {{--@if($val['tweet_img']!="null")--}}
+            {{--<img class="card-image-post" src="{{$val['tweet_img']}}">--}}
+            {{--@endif--}}
+            {{--<div class="card-text">--}}
+            {{--{{$val['full_text']}}--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
         @endforeach
-    </div>
+    @endforeach
+
     <script>$(document).ready(function () {
 //            const tilt = $('.js-tilt').tilt({
 //                scale: 1.0005

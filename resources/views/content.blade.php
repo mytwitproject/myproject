@@ -1,27 +1,24 @@
 @extends("layouts.master")
 
 @section("cont")
-    <div class="row">
+
         @foreach($key as $response=>$val)
-            <div class="card">
-                <div class="card-title">
-                    <div class="username"> {{'@'.$val['user_name']}} </div>
-                    <div class="date"> 2014-02-11 08:50</div>
-                </div>
-                <div class="card-block">
-                    <img class="img-circle card-img-top" src="{{str_replace("normal","400x400",$val['img_url'])}}">
-
-
-                    <div class="card-text">
-                        {{$val['full_text']}}
+            <div class="row">
+                <div class="card">
+                    <div class="card-title">
+                        <div class="username"> {{'@'.$val['user_name']}} </div>
+                        <div class="date"> 2014-02-11 08:50</div>
                     </div>
-
-
-                    @if($val['tweet_img']!="null")
-                        <hr>
-                        <img class="card-image-post" src="{{$val['tweet_img']}}">
-                    @endif
-
+                    <div class="card-block">
+                        <img class="img-circle card-img-top" src="{{str_replace("normal","400x400",$val['img_url'])}}">
+                        <div class="card-text">
+                            {{$val['full_text']}}
+                        </div>
+                        @if($val['tweet_img']!="null")
+                            <hr>
+                            <img class="card-image-post" src="{{$val['tweet_img']}}">
+                        @endif
+                    </div>
                 </div>
             </div>
         @endforeach
