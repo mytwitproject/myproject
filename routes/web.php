@@ -29,6 +29,10 @@ Route::get('/geo','MainController@geo');
 Route::get('/content',function (){
     return view('content');
 });
+
+Route::get('/test',function (){
+    return view('test');
+});
 Route::get('country','MainController@get_country');
 Route::get('/tweet', function()
 {
