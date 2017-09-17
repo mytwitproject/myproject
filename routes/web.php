@@ -68,4 +68,7 @@ Route::get('/search', function()
 
 
 
-Route::post('/trensbyhashtag',['as' => 'trensbyhashtag', 'uses' =>'MainController@trendsbyhashtag']);
+Route::post('/trensbyhashtag',['as' => 'trensbyhashtag', 'uses' =>'MainController@web_trends_byhashtag']);
+
+
+Route::get('/test','MainController@Most_recent');

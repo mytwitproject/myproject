@@ -60,7 +60,6 @@ $lastID = $selected_woeid;
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url('home') }}">Home</a></li>
-                <li><a href="{{ url('country') }}">Country</a></li>
                 <li>
                     {!! Form::open(['method'=>'GET','route'=>['changehome']]) !!}
                     {{ Form::select('size', $country, $lastID,['id' => 'some-id','onchange' => '$("#country_name").val($("#some-id option:selected").text());this.form.submit()']) }}
@@ -74,7 +73,7 @@ $lastID = $selected_woeid;
                     <div class="input-group">
                         {{ Form::text('hashtag','',array('class'=>'form-control','placeholder'=>'Search')) }}
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span></button>
+                            <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span></button>
                         </div>
                     </div>
                     {!! Form::close() !!}

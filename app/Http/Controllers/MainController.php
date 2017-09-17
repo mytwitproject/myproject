@@ -17,7 +17,7 @@ use Thujohn\Twitter\Facades\Twitter;
 class MainController extends Controller
 {
 
-    public function trendsbyhashtag(Request $request)
+    public function web_trends_byhashtag(Request $request)
     {
         $request->flash();
         $country_name = $request->session()->get('key');
@@ -33,7 +33,6 @@ class MainController extends Controller
         $country_name = $temp[0];
         $hashtag = $temp[1];
         $selected_woeid = $temp[2];
-
         try {
             if ($country_name == "Worldwide") {
                 $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended",]);
@@ -58,7 +57,6 @@ class MainController extends Controller
                         cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
                 $distance = $angle * $earthRadius;
                 //---------------------------------------------------
-
                 $response = Twitter::getSearch(['q' => $hashtag, 'count' => 15, "tweet_mode" => "extended", 'geocode' => $lat . "," . $long . "," .$distance, 'result_type=>"popular']);
                 $response = $response->statuses;
             }
@@ -72,7 +70,6 @@ class MainController extends Controller
                 $temp = preg_replace("/RT /", " ", $temp);
                 $temp = preg_replace("/(@.*? )/", " ", $temp);
                 $temp = explode('http', $temp);
-                //TODO:REMOVE EXTRA CHARACERS FROM $TEMP
                 $full = ['full_text' => $temp[0],
                     'user_name' => $val->user->screen_name,
                     'img_url' => $val->user->profile_image_url,
@@ -102,7 +99,6 @@ class MainController extends Controller
         $request->session()->put('selected_woeid',1);
 
         $respons = Twitter::getTrendsPlace(["id" => 1]);
-
         $respons = $respons['0']->trends;
         $all_query = [];
         for ($i = 0; $i <= 9; $i++) {
