@@ -169,7 +169,7 @@ class MainController extends Controller
                         ];
                         $all[] = $full;
                     }
-                    $all_query[$respons[$i]->query] = $all;
+                    $all_query[$respons[$i]->name] = $all;
                 }
             }
             return view('home', [
