@@ -19,10 +19,10 @@ class MainController extends Controller
 
     public function web_trends_byhashtag(Request $request)
     {
+        $hashtag = $request->hashtag;
         $request->flash();
         $country_name = $request->session()->get('key');
         $request->session()->put('text_search', $request->hashtag);
-        $hashtag = $request->hashtag;
         $info = $country_name . "-" . $hashtag . "-" . $request->session()->get('selected_woeid');
         return $this->trends_byhashtag($info);
     }
@@ -122,7 +122,7 @@ class MainController extends Controller
                     ];
                     $all[] = $full;
                 }
-                $all_query[$respons[$i]->query] = $all;
+                $all_query[$respons[$i]->name] = $all;
             }
         }
         return view('home', [
